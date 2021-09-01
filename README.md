@@ -51,6 +51,7 @@
     var foo = "11"+2-"1";
     console.log(foo);
     console.log(typeof foo);
+
     // 执行完后foo的值为111，foo的类型为Number。
 ```
 
@@ -60,4 +61,83 @@
     console.log(typeof foo);
 
     // 执行完后foo的值为1121(此处是字符串拼接)，foo的类型为String。
+```
+
+- **已知数组var stringArray = [“This”, “is”, “Baidu”, “Campus”]，Alert出”This is Baidu Campus”。**
+```js
+    alert(stringArray.join(" "))
+```
+
+- **那么问题来了，已知有字符串foo="get-element-by-id",写一个function将其转化成驼峰表示法"getElementById"。**
+```js
+    function combo(msg){
+        var arr = msg.split("-");
+        var len = arr.length;    //将arr.length存储在一个局部变量可以提高for循环效率
+        for(var i=1;i<len;i++){
+            arr[i]=arr[i].charAt(0).toUpperCase()+arr[i].substr(1,arr[i].length-1);
+        }
+        msg=arr.join("");
+        return msg;
+    }
+
+    // 考察基础API
+```
+
+- **var numberArray = [3,6,2,4,1,5];**
+    - 实现对该数组的倒排，输出[5,1,4,2,6,3]
+    - 实现对该数组的降序排列，输出[6,5,4,3,2,1]
+```js
+    var numberArray = [3,6,2,4,1,5];
+        numberArray.reverse(); // 5,1,4,2,6,3
+        numberArray.sort(function(a,b){  //6,5,4,3,2,1
+        return b-a;
+    })
+
+    // 考察基础API
+```
+
+- **输出今天的日期，以YYYY-MM-DD的方式，比如今天是2014年9月26日，则输出2014-09-26**
+```js
+    var d = new Date();
+    // 获取年，getFullYear()返回4位的数字
+    var year = d.getFullYear();
+    // 获取月，月份比较特殊，0是1月，11是12月
+    var month = d.getMonth() + 1;
+    // 变成两位
+    month = month < 10 ? '0' + month : month;
+    // 获取日
+    var day = d.getDate();
+    day = day < 10 ? '0' + day : day;
+    alert(year + '-' + month + '-' + day);
+```
+
+- **将字符串”<tr><td>{$id}</td><td>{$name}</td></tr>”中的{$id}替换成10，{$name}替换成Tony**
+```js
+    "<tr><td>{$id}</td><td>{$id}_{$name}</td></tr>".replace(/{$id}/g, '10').replace(/{$name}/g, 'Tony');
+
+    // 使用正则表达式
+```
+
+- **foo = foo || bar ，这行代码是什么意思？为什么要这样写？**
+    - if(!foo) foo = bar; //如果foo存在，值不变，否则把bar的值赋给foo。
+    - 短路表达式：作为"&&"和"||"操作符的操作数表达式，这些表达式在进行求值时，只要最终的结果已经可以确定是真或假，求值过程便告终止，这称之为短路求值。
+
+- **看下列代码，将会输出什么?** (变量声明提升)
+```js
+    var foo = 1;
+    function(){
+        console.log(foo);
+        var foo = 2;
+        console.log(foo);
+    }
+
+    // 输出undefined 和 2。上面代码相当于：
+
+    var foo = 1;
+    function(){
+        var foo;
+        console.log(foo); //undefined
+        foo = 2;
+        console.log(foo); // 2;  
+    }
 ```
