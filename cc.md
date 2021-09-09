@@ -50,7 +50,7 @@ javascript本地存储的方式有哪些？区别及应用场景？
 
 #### Node
 
-- (module.exports和exports的区别)[https://www.jianshu.com/p/beafd9ac9656]
+- [module.exports和exports的区别](https://www.jianshu.com/p/beafd9ac9656)
 
 
 .vue
